@@ -20,7 +20,7 @@ def fetch_and_process():
             cursor.execute("SELECT id FROM articles WHERE link = ?", (entry.link,))
             if not cursor.fetchone():
                 img = extract_image(entry, entry.link)
-                process_article(entry.title, entry.link, entry.description, img)
+                process_article(entry.title, entry.link, getattr(entry, 'description', ''), img)
             conn.close()
 
 st.markdown("""
