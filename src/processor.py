@@ -37,12 +37,7 @@ def init_db():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS articles 
-                      (id INTEGER PRIMARY KEY, title TEXT, link TEXT, score INTEGER, summary TEXT, image_url TEXT)''')
-    for col in ['summary', 'image_url']:
-        try:
-            cursor.execute(f"ALTER TABLE articles ADD COLUMN {col} TEXT")
-        except sqlite3.OperationalError:
-            pass
+                      (id INTEGER PRIMARY KEY, title TEXT, link TEXT UNIQUE, score INTEGER, summary TEXT, image_url TEXT)''')
     conn.commit()
     conn.close()
 
