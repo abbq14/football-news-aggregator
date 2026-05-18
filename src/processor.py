@@ -38,6 +38,11 @@ def init_db():
     cursor = conn.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS articles 
                       (id INTEGER PRIMARY KEY, title TEXT, link TEXT UNIQUE, score INTEGER, summary TEXT, image_url TEXT)''')
+    cursor.execute("DELETE FROM articles WHERE id NOT IN (SELECT MIN(id) FROM articles GROUP BY link)")
+    try:
+        cursor.execute("CREATE UNIQUE INDEX IF NOT EXISTS idx_articles_link ON articles(link)")
+    except sqlite3.OperationalError:
+        pass
     conn.commit()
     conn.close()
 
