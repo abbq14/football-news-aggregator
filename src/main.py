@@ -67,16 +67,6 @@ st.markdown("""
 st.title("Real Madrid News Aggregator")
 st.markdown("<p class='subtitle'>Automated football news — curated, translated, scored</p>", unsafe_allow_html=True)
 
-if 'initialized' not in st.session_state:
-    st.session_state.initialized = True
-    st.rerun()
-
-if st.session_state.get('do_fetch', True):
-    st.session_state.do_fetch = False
-    with st.spinner("Fetching latest news..."):
-        fetch_and_process()
-    st.rerun()
-
 if st.button("Refresh News"):
     with st.spinner("Fetching latest news..."):
         fetch_and_process()
