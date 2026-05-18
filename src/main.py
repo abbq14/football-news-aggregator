@@ -10,7 +10,10 @@ init_db()
 
 def fetch_and_process():
     for feed_url in RSS_FEEDS:
-        feed = feedparser.parse(feed_url)
+        try:
+            feed = feedparser.parse(feed_url)
+        except Exception:
+            continue
         for entry in feed.entries:
             conn = sqlite3.connect(DB_PATH)
             cursor = conn.cursor()
@@ -19,10 +22,6 @@ def fetch_and_process():
                 img = extract_image(entry, entry.link)
                 process_article(entry.title, entry.link, entry.description, img)
             conn.close()
-
-if 'initialized' not in st.session_state:
-    st.session_state.initialized = True
-    fetch_and_process()
 
 st.markdown("""
 <style>
@@ -68,8 +67,20 @@ st.markdown("""
 st.title("Real Madrid News Aggregator")
 st.markdown("<p class='subtitle'>Automated football news — curated, translated, scored</p>", unsafe_allow_html=True)
 
+if 'initialized' not in st.session_state:
+    st.session_state.initialized = True
+    st.rerun()
+
+if st.session_state.get('do_fetch', True):
+    st.session_state.do_fetch = False
+    with st.spinner("Fetching latest news..."):
+        fetch_and_process()
+    st.rerun()
+
 if st.button("Refresh News"):
-    fetch_and_process()
+    with st.spinner("Fetching latest news..."):
+        fetch_and_process()
+    st.rerun()
 
 conn = sqlite3.connect(DB_PATH)
 articles = conn.execute("SELECT title, link, score, summary, image_url FROM articles ORDER BY id DESC").fetchall()
