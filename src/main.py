@@ -1,8 +1,10 @@
 import streamlit as st
 import feedparser
 import sqlite3
-from src.processor import process_article, init_db, extract_image
-from src.config import RSS_FEEDS, DB_PATH
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from processor import process_article, init_db, extract_image
+from config import RSS_FEEDS, DB_PATH
 
 init_db()
 

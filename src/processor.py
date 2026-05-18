@@ -1,8 +1,10 @@
 import sqlite3
 import re
 import trafilatura
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from litellm import completion
-from src.config import KEYWORDS, LLM_MODEL, DB_PATH
+from config import KEYWORDS, LLM_MODEL, DB_PATH
 
 def translate_to_english(text):
     """Translate text to Arabic using deep-translator."""
