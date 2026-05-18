@@ -25,7 +25,7 @@ RSS_FEEDS = [
 ]
 
 # Keywords for Pre-filtering
-KEYWORDS = ["real madrid", "xabi alonso", "champions", "liga", "football", "soccer", "transfer", "premier", "ucl", "uefa", "endrick", "mbappe", "vinicius", "bellingham", "kroos", "modric", "ancelotti", "bernabeu", "la liga", "copa", "final", "goal", "assist", "manager", "fifa"]
+KEYWORDS = ["real madrid", "xabi alonso", "vinicius", "mbappe", "bellingham", "ancelotti", "kroos", "modric", "bernabeu", "endrick", "copa del rey", "supercopa", "la liga", "champions", "ucl", "uefa", "copa", "transfer"]
 
 # Database Configuration
 DB_PATH = "data/news.db"

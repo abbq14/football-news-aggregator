@@ -85,7 +85,7 @@ for title, link, score, summary, image_url in articles:
 
     col1, col2 = st.columns([1, 2])
     if image_url:
-        col1.image(image_url, width=200)
+        col1.image(image_url, width=400)
     if summary:
         col2.markdown(f"<div style='font-size:20px; line-height:1.8; direction:rtl; text-align:right;'>{summary}</div>", unsafe_allow_html=True)
 

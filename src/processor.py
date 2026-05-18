@@ -55,10 +55,10 @@ def rule_based_prefilter(title, content):
     return False
 
 KEYWORD_SCORES = {
-    "real madrid": 3, "xabi alonso": 3, "vinicius": 2, "mbappe": 2,
-    "bellingham": 2, "ancelotti": 2, "bernabeu": 2, "endrick": 2,
-    "kroos": 2, "modric": 2, "ucl": 1, "champions league": 1,
-    "la liga": 1, "transfer": 1, "final": 1, "goal": 1,
+    "real madrid": 4, "xabi alonso": 4, "vinicius": 3, "mbappe": 3,
+    "bellingham": 3, "ancelotti": 3, "bernabeu": 3, "endrick": 3,
+    "kroos": 3, "modric": 3, "ucl": 1, "champions league": 1,
+    "la liga": 1, "copa del rey": 1, "supercopa": 1,
 }
 
 def keyword_score(title, content):
